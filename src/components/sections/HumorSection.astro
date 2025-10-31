@@ -1,0 +1,109 @@
+---
+import PodcastCard from '../PodcastCard.astro';
+import { getHumorPodcasts } from '../../data/podcasts';
+import { getPodcastLikes, calculatePriority } from '../../utils/likes';
+
+interface Props {
+  limit?: number;
+}
+
+const { limit = 6 } = Astro.props;
+
+// Obtener datos con likes del localStorage integrados
+function getPodcastsWithLikes(podcasts: ReturnType<typeof getHumorPodcasts>) {
+  return podcasts.map(podcast => {
+    const storedLikes = getPodcastLikes(podcast.id);
+    const totalLikes = storedLikes || podcast.likes || 0;
+    return {
+      ...podcast,
+      likes: totalLikes,
+      priority: calculatePriority({ id: podcast.id, likes: totalLikes, rating: podcast.rating })
+    };
+  });
+}
+
+// Obtener podcasts de humor ordenados por prioridad (likes + rating)
+const humorPodcasts = getPodcastsWithLikes(getHumorPodcasts()).sort((a, b) => 
+  (b.priority || 0) - (a.priority || 0)
+);
+---
+
+<section class="section" id="humor-section">
+  <div class="section-header">
+    <div class="section-title-wrapper">
+      <h2 class="section-title">
+        <svg class="section-icon" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.834a1 1 0 001.581.814L12 13.333V10a1 1 0 00-1.581-.814L6 10.333zM16 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6z"/>
+        </svg>
+        Mejores Podcasts de Humor
+      </h2>
+      <p class="section-subtitle">Los episodios más divertidos que te harán reír sin parar</p>
+    </div>
+    <a href="/categorias#humor" class="section-link">
+      Ver todos
+      <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+  <div class="podcasts-grid">
+    {humorPodcasts.slice(0, limit).map((podcast) => (
+      <PodcastCard podcast={podcast} />
+    ))}
+  </div>
+</section>
+
+<style>
+  .section {
+    @apply scroll-mt-8;
+  }
+
+  .section-header {
+    @apply flex items-end justify-between mb-8 flex-wrap gap-4;
+  }
+
+  .section-title-wrapper {
+    @apply flex-1;
+  }
+
+  .section-title {
+    @apply flex items-center gap-3 text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2;
+  }
+
+  .section-icon {
+    @apply w-8 h-8 text-purple-600 dark:text-purple-400;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-gray-600 dark:text-gray-400;
+  }
+
+  .section-link {
+    @apply flex items-center gap-2 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-semibold transition-colors;
+  }
+
+  .arrow-icon {
+    @apply w-5 h-5;
+  }
+
+  .podcasts-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+  }
+</style>
+
+<script>
+  // Actualizar ordenamiento dinámico cuando cambien los likes
+  if (typeof window !== 'undefined') {
+    window.addEventListener('podcast-liked', async (e) => {
+      const event = e as CustomEvent;
+      const { podcastId } = event.detail;
+      
+      const humorSection = document.getElementById('humor-section');
+      if (humorSection && humorSection.querySelector(`[data-podcast-id="${podcastId}"]`)) {
+        await new Promise(resolve => setTimeout(resolve, 800));
+        window.location.reload();
+      }
+    });
+  }
+</script>
+

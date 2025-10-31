@@ -1,0 +1,67 @@
+---
+import PodcastCard from '../PodcastCard.astro';
+import { getLatestPodcasts } from '../../data/podcasts';
+import { getPodcastLikes } from '../../utils/likes';
+
+interface Props {
+  limit?: number;
+}
+
+const { limit = 6 } = Astro.props;
+
+// Últimos capítulos (con likes integrados)
+const latestPodcasts = getLatestPodcasts(limit).map(podcast => ({
+  ...podcast,
+  likes: getPodcastLikes(podcast.id) || podcast.likes || 0
+}));
+---
+
+<section class="section" id="latest-section">
+  <div class="section-header">
+    <div class="section-title-wrapper">
+      <h2 class="section-title">
+        <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        Últimos Capítulos
+      </h2>
+      <p class="section-subtitle">Los episodios más recientes de cualquier género</p>
+    </div>
+  </div>
+  <div class="podcasts-grid">
+    {latestPodcasts.map((podcast) => (
+      <PodcastCard podcast={podcast} />
+    ))}
+  </div>
+</section>
+
+<style>
+  .section {
+    @apply scroll-mt-8;
+  }
+
+  .section-header {
+    @apply flex items-end justify-between mb-8 flex-wrap gap-4;
+  }
+
+  .section-title-wrapper {
+    @apply flex-1;
+  }
+
+  .section-title {
+    @apply flex items-center gap-3 text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2;
+  }
+
+  .section-icon {
+    @apply w-8 h-8 text-purple-600 dark:text-purple-400;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-gray-600 dark:text-gray-400;
+  }
+
+  .podcasts-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+  }
+</style>
+

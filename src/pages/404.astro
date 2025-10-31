@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="404 - Página no encontrada">
+  <div class="error-container">
+    <div class="error-content">
+      <h1 class="error-title">404</h1>
+      <h2 class="error-subtitle">Página no encontrada</h2>
+      <p class="error-description">
+        Lo sentimos, la página que buscas no existe o ha sido movida.
+      </p>
+      <a href="/" class="error-link">
+        Volver al inicio
+      </a>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .error-container {
+    @apply min-h-[60vh] flex items-center justify-center px-4;
+  }
+
+  .error-content {
+    @apply text-center max-w-md;
+  }
+
+  .error-title {
+    @apply text-9xl font-bold text-purple-600 mb-4;
+  }
+
+  .error-subtitle {
+    @apply text-3xl font-bold text-gray-900 dark:text-white mb-4;
+  }
+
+  .error-description {
+    @apply text-gray-600 dark:text-gray-400 mb-8 text-lg;
+  }
+
+  .error-link {
+    @apply inline-block px-6 py-3 bg-purple-600 dark:bg-purple-500 text-white rounded-lg font-semibold hover:bg-purple-700 dark:hover:bg-purple-600 transition-colors;
+  }
+</style>
+

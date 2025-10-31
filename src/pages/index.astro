@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HumorSection from '../components/sections/HumorSection.astro';
+import LatestSection from '../components/sections/LatestSection.astro';
+import CultSection from '../components/sections/CultSection.astro';
+import BestSection from '../components/sections/BestSection.astro';
+---
+
+<Layout title="Mejores Podcasts - Los Mejores Capítulos">
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">Los Mejores Capítulos de Podcast</h1>
+      <p class="hero-description">
+        Descubre contenido inspirador, educativo y entretenido de los mejores podcasts en español
+      </p>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Sección: Mejores Podcasts de Humor -->
+    <HumorSection limit={6} />
+
+    <!-- Sección: Últimos Capítulos -->
+    <LatestSection limit={6} />
+
+    <!-- Sección: De Culto -->
+    <CultSection />
+
+    <!-- Sección: Mejores Capítulos o Episodios -->
+    <BestSection limit={6} />
+  </div>
+</Layout>
+
+<style>
+  .hero-section {
+    @apply bg-gradient-to-r from-purple-600 to-pink-600 text-white py-20;
+  }
+
+  .hero-content {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center;
+  }
+
+  .hero-title {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold mb-6;
+  }
+
+  .hero-description {
+    @apply text-xl md:text-2xl text-purple-100 max-w-3xl mx-auto;
+  }
+
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16;
+  }
+</style>
+
+<script>
+  // Optimización: Intersection Observer para lazy loading de imágenes
+  if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target as HTMLImageElement;
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+            observer.unobserve(img);
+          }
+        }
+      });
+    }, {
+      rootMargin: '50px'
+    });
+
+    // Observar todas las imágenes con data-src después de que el DOM esté listo
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('img[data-src]').forEach(img => {
+          imageObserver.observe(img);
+        });
+      });
+    } else {
+      document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+      });
+    }
+  }
+</script>

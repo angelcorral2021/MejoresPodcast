@@ -1,0 +1,121 @@
+---
+import type { Podcast } from '../types/podcast';
+
+interface Props {
+  podcast: Podcast;
+}
+
+const { podcast } = Astro.props;
+
+const embedUrl = `https://www.youtube.com/embed/${podcast.youtubeId}`;
+const youtubeUrl = `https://www.youtube.com/watch?v=${podcast.youtubeId}`;
+---
+
+<div class="video-player-container">
+  <div class="video-wrapper">
+    <iframe 
+      src={embedUrl}
+      title={podcast.title}
+      class="youtube-embed"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+  
+  <div class="video-info">
+    <div class="video-header">
+      <div class="category-tag">{podcast.category}</div>
+      <a 
+        href={youtubeUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="youtube-link"
+      >
+        Ver en YouTube
+        <svg class="external-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+        </svg>
+      </a>
+    </div>
+    
+    <h1 class="video-title">{podcast.title}</h1>
+    
+    <div class="video-meta">
+      <span class="podcast-name">{podcast.podcastName}</span>
+      {podcast.episodeNumber && (
+        <span class="episode-number">Episodio {podcast.episodeNumber}</span>
+      )}
+      {podcast.duration && (
+        <span class="duration">{podcast.duration}</span>
+      )}
+      <span class="date">{new Date(podcast.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+    </div>
+    
+    <div class="video-description">
+      <p>{podcast.description}</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .video-player-container {
+    @apply max-w-4xl mx-auto;
+  }
+
+  .video-wrapper {
+    @apply relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl dark:shadow-gray-900 mb-6 bg-gray-900;
+  }
+
+  .youtube-embed {
+    @apply absolute top-0 left-0 w-full h-full;
+  }
+
+  .video-info {
+    @apply space-y-4;
+  }
+
+  .video-header {
+    @apply flex items-center justify-between flex-wrap gap-3;
+  }
+
+  .category-tag {
+    @apply inline-block px-4 py-2 bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 rounded-full text-sm font-semibold;
+  }
+
+  .youtube-link {
+    @apply flex items-center gap-2 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-semibold transition-colors;
+  }
+
+  .external-icon {
+    @apply w-5 h-5;
+  }
+
+  .video-title {
+    @apply text-3xl md:text-4xl font-bold text-gray-900 dark:text-white;
+  }
+
+  .video-meta {
+    @apply flex items-center gap-4 flex-wrap text-sm text-gray-600 dark:text-gray-400;
+  }
+
+  .podcast-name {
+    @apply font-semibold text-gray-700 dark:text-gray-300 text-base;
+  }
+
+  .episode-number {
+    @apply px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-md;
+  }
+
+  .duration {
+    @apply px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-md;
+  }
+
+  .date {
+    @apply ml-auto;
+  }
+
+  .video-description {
+    @apply text-gray-700 dark:text-gray-300 leading-relaxed text-lg bg-gray-50 dark:bg-gray-800 p-6 rounded-lg;
+  }
+</style>
+

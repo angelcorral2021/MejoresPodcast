@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PodcastCard from '../components/PodcastCard.astro';
+import { getAllCategories, getPodcastsByCategory } from '../data/podcasts';
+import { getPodcastLikes } from '../utils/likes';
+
+const categories = getAllCategories();
+---
+
+<Layout title="Categorías - Mejores Podcasts" description="Explora podcasts por categoría">
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">Categorías</h1>
+      <p class="hero-description">
+        Explora los mejores capítulos organizados por temas
+      </p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="categories-grid">
+      {categories.map((category) => {
+        const categoryPodcasts = getPodcastsByCategory(category).map(podcast => ({
+          ...podcast,
+          likes: getPodcastLikes(podcast.id) || podcast.likes || 0
+        }));
+        return (
+          <section class="category-section" id={category.toLowerCase().replace(/\s+/g, '-')}>
+            <div class="category-header">
+              <h2 class="category-title">{category}</h2>
+              <span class="category-count">{categoryPodcasts.length} episodios</span>
+            </div>
+            <div class="category-videos">
+              {categoryPodcasts.map((podcast) => (
+                <PodcastCard podcast={podcast} />
+              ))}
+            </div>
+          </section>
+        );
+      })}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .hero-section {
+    @apply bg-gradient-to-r from-purple-600 to-pink-600 text-white py-16;
+  }
+
+  .hero-content {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center;
+  }
+
+  .hero-title {
+    @apply text-4xl md:text-5xl font-bold mb-4;
+  }
+
+  .hero-description {
+    @apply text-xl text-purple-100;
+  }
+
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16;
+  }
+
+  .categories-grid {
+    @apply space-y-16;
+  }
+
+  .category-section {
+    @apply scroll-mt-8;
+  }
+
+  .category-header {
+    @apply flex items-center justify-between mb-8 pb-4 border-b-2 border-purple-200 dark:border-purple-800;
+  }
+
+  .category-title {
+    @apply text-3xl font-bold text-gray-900 dark:text-white;
+  }
+
+  .category-count {
+    @apply text-gray-600 dark:text-gray-400 font-medium;
+  }
+
+  .category-videos {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+  }
+</style>
+

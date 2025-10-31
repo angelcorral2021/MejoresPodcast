@@ -1,0 +1,169 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import VideoPlayer from '../../components/VideoPlayer.astro';
+import PodcastCard from '../../components/PodcastCard.astro';
+import { getPodcastShowById, getPodcastById } from '../../data/podcasts';
+import { getPodcastLikes } from '../../utils/likes';
+
+export async function getStaticPaths() {
+  const { getPodcastShows } = await import('../../data/podcasts');
+  const shows = getPodcastShows();
+  
+  return shows.map((show) => ({
+    params: { showId: show.id },
+  }));
+}
+
+const { showId } = Astro.params;
+const show = showId ? getPodcastShowById(showId) : null;
+
+if (!show) {
+  return Astro.redirect('/404');
+}
+
+// Ordenar episodios por fecha (más recientes primero)
+const sortedEpisodes = [...show.episodes].sort((a, b) => 
+  new Date(b.date).getTime() - new Date(a.date).getTime()
+);
+
+// Integrar likes del localStorage
+const episodesWithLikes = sortedEpisodes.map(episode => ({
+  ...episode,
+  likes: getPodcastLikes(episode.id) || episode.likes || 0
+}));
+---
+
+<Layout title={`${show.name} - Mejores Podcasts`} description={show.description}>
+  <div class="show-container">
+    <!-- Header del Show -->
+    <div class="show-header">
+      <div class="show-thumbnail">
+        <img src={show.thumbnail} alt={show.name} class="show-image" />
+      </div>
+      <div class="show-info">
+        <div class="show-category">{show.category}</div>
+        <h1 class="show-title">{show.name}</h1>
+        <p class="show-description">{show.description}</p>
+        <div class="show-stats">
+          <div class="stat">
+            <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+            </svg>
+            <span>{show.totalEpisodes} Episodios</span>
+          </div>
+          {show.rating && (
+            <div class="stat">
+              <svg class="stat-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+              <span>{show.rating.toFixed(1)}</span>
+            </div>
+          )}
+          {show.likes && show.likes > 0 && (
+            <div class="stat">
+              <svg class="stat-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              </svg>
+              <span>{show.likes} Likes</span>
+            </div>
+          )}
+          {show.isCult && (
+            <div class="stat cult-stat">
+              <svg class="stat-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+              <span>De Culto</span>
+            </div>
+          )}
+        </div>
+        <a href="/" class="back-button">
+          <svg class="back-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+          Volver al inicio
+        </a>
+      </div>
+    </div>
+
+    <!-- Lista de Episodios -->
+    <section class="episodes-section">
+      <h2 class="episodes-title">Todos los Episodios</h2>
+      <div class="episodes-grid">
+        {episodesWithLikes.map((episode) => (
+          <PodcastCard podcast={episode} />
+        ))}
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .show-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+  }
+
+  .show-header {
+    @apply flex flex-col md:flex-row gap-8 mb-12 pb-8 border-b border-gray-200 dark:border-gray-700;
+  }
+
+  .show-thumbnail {
+    @apply flex-shrink-0;
+  }
+
+  .show-image {
+    @apply w-full md:w-64 h-64 object-cover rounded-xl shadow-lg;
+  }
+
+  .show-info {
+    @apply flex-1 space-y-4;
+  }
+
+  .show-category {
+    @apply inline-block px-4 py-2 bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 rounded-full text-sm font-semibold;
+  }
+
+  .show-title {
+    @apply text-3xl md:text-4xl font-bold text-gray-900 dark:text-white;
+  }
+
+  .show-description {
+    @apply text-lg text-gray-600 dark:text-gray-400 leading-relaxed;
+  }
+
+  .show-stats {
+    @apply flex items-center gap-6 flex-wrap;
+  }
+
+  .stat {
+    @apply flex items-center gap-2 text-gray-700 dark:text-gray-300;
+  }
+
+  .stat-icon {
+    @apply w-5 h-5;
+  }
+
+  .cult-stat {
+    @apply text-yellow-600 dark:text-yellow-400;
+  }
+
+  .back-button {
+    @apply inline-flex items-center gap-2 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-semibold transition-colors mt-4;
+  }
+
+  .back-icon {
+    @apply w-5 h-5;
+  }
+
+  .episodes-section {
+    @apply mt-12;
+  }
+
+  .episodes-title {
+    @apply text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8;
+  }
+
+  .episodes-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+  }
+</style>
+

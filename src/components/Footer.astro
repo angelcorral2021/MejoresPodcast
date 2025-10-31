@@ -1,0 +1,98 @@
+---
+---
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3 class="footer-title">Mejores Podcasts</h3>
+        <p class="footer-description">
+          Descubre los mejores capítulos de podcast en español. 
+          Encuentra contenido inspirador, educativo y entretenido.
+        </p>
+      </div>
+      <div class="footer-section">
+        <h4 class="footer-subtitle">Enlaces</h4>
+        <ul class="footer-links">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/categorias">Categorías</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4 class="footer-subtitle">Redes Sociales</h4>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Twitter">
+            <svg fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Facebook">
+            <svg fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01" fill="white"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Mejores Podcasts. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    @apply bg-gray-900 dark:bg-black text-white mt-16;
+  }
+
+  .footer-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12;
+  }
+
+  .footer-content {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-8 mb-8;
+  }
+
+  .footer-section {
+    @apply space-y-4;
+  }
+
+  .footer-title {
+    @apply text-2xl font-bold text-purple-400 mb-4;
+  }
+
+  .footer-description {
+    @apply text-gray-400 leading-relaxed;
+  }
+
+  .footer-subtitle {
+    @apply text-lg font-semibold mb-4;
+  }
+
+  .footer-links {
+    @apply space-y-2;
+  }
+
+  .footer-links a {
+    @apply text-gray-400 hover:text-purple-400 transition-colors block;
+  }
+
+  .social-links {
+    @apply flex gap-4;
+  }
+
+  .social-link {
+    @apply text-gray-400 hover:text-purple-400 transition-colors;
+  }
+
+  .footer-bottom {
+    @apply border-t border-gray-800 dark:border-gray-900 pt-8 text-center text-gray-400 text-sm;
+  }
+</style>
+
