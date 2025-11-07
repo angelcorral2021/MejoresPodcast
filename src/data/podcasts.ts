@@ -94,36 +94,7 @@ export const podcasts: Podcast[] = [
     podcastId: 'podcast-humor-inteligente'
   },
   // Podcasts de otras categorías
-  {
-    id: '7',
-    title: 'Negocios y Emprendimiento Moderno',
-    description: 'Estrategias de negocio y emprendimiento para el mundo moderno. Consejos prácticos de expertos.',
-    youtubeId: 'dQw4w9WgXcQ',
-    thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
-    duration: '55:30',
-    date: '2024-04-22',
-    category: 'Negocios',
-    podcastName: 'Mentes Brillantes',
-    episodeNumber: 45,
-    likes: 320,
-    rating: 4.3,
-    podcastId: 'podcast-mentes-brillantes'
-  },
-  {
-    id: '8',
-    title: 'Tecnología del Futuro',
-    description: 'Conversación profunda sobre cómo la inteligencia artificial está transformando nuestra sociedad.',
-    youtubeId: 'jNQXAC9IVRw',
-    thumbnail: 'https://img.youtube.com/vi/jNQXAC9IVRw/maxresdefault.jpg',
-    duration: '62:15',
-    date: '2024-04-19',
-    category: 'Tecnología',
-    podcastName: 'Tech Talk',
-    episodeNumber: 28,
-    likes: 456,
-    rating: 4.5,
-    podcastId: 'podcast-tech-talk'
-  },
+  
   {
     id: '9',
     title: 'Salud Mental y Bienestar',

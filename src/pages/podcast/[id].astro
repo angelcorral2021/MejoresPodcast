@@ -122,22 +122,47 @@ const relatedPodcasts = podcasts
           )}
         </div>
         
-        {/* Lista completa de episodios del show */}
+        {/* Carrusel de episodios */}
         {sortedEpisodes.length > 0 && (
-          <div class="all-episodes">
-            <h3 class="all-episodes-title">Todos los Episodios de {podcast.podcastName}</h3>
-            <div class="episodes-list">
-              {sortedEpisodes.map((episode) => (
-                <a 
-                  href={`/podcast/${episode.id}`}
-                  class={`episode-item ${episode.id === podcast.id ? 'current' : ''}`}
-                >
-                  <span class="episode-number">Ep. {episode.episodeNumber || 'N/A'}</span>
-                  <span class="episode-title">{episode.title}</span>
-                  {episode.duration && (
-                    <span class="episode-duration">{episode.duration}</span>
-                  )}
-                </a>
+          <div class="episodes-carousel">
+            <h3 class="episodes-carousel-title">Todos los Episodios de {podcast.podcastName}</h3>
+            <div class="carousel-container">
+              <button class="carousel-button prev" aria-label="Episodios anteriores">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+              </button>
+              <div class="carousel-track">
+                <div class="carousel-slides" data-total-slides={sortedEpisodes.length}>
+                  {sortedEpisodes.map((episode) => (
+                    <a 
+                      href={`/podcast/${episode.id}`}
+                      class={`carousel-slide ${episode.id === podcast.id ? 'current' : ''}`}
+                    >
+                      <div class="slide-content">
+                        <span class="episode-number">Ep. {episode.episodeNumber || 'N/A'}</span>
+                        <span class="episode-title">{episode.title}</span>
+                        {episode.duration && (
+                          <span class="episode-duration">{episode.duration}</span>
+                        )}
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+              <button class="carousel-button next" aria-label="Siguientes episodios">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+            <div class="carousel-dots">
+              {Array.from({ length: Math.ceil(sortedEpisodes.length / 3) }).map((_, i) => (
+                <button 
+                  class="carousel-dot" 
+                  data-slide={i}
+                  aria-label={`Ir a página ${i + 1} de episodios`}
+                ></button>
               ))}
             </div>
           </div>
@@ -160,15 +185,15 @@ const relatedPodcasts = podcasts
 
 <style>
   .container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2;
   }
 
   .back-link {
-    @apply flex items-center gap-2 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-semibold mb-8 transition-colors;
+    @apply inline-flex items-center gap-1 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium text-sm mb-2 transition-colors;
   }
 
   .back-icon {
-    @apply w-5 h-5;
+    @apply w-4 h-4;
   }
 
   .related-section {
@@ -232,25 +257,58 @@ const relatedPodcasts = podcasts
     @apply text-sm font-semibold text-gray-900 dark:text-white line-clamp-2;
   }
 
-  .all-episodes {
+  .episodes-carousel {
     @apply mt-8;
   }
 
-  .all-episodes-title {
-    @apply text-xl font-bold text-gray-900 dark:text-white mb-4;
+  .episodes-carousel-title {
+    @apply text-xl font-bold text-gray-900 dark:text-white mb-4 text-center;
   }
 
-  .episodes-list {
-    @apply space-y-2;
+  .carousel-container {
+    @apply relative flex items-center gap-4;
   }
 
-  .episode-item {
-    @apply flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md transition-all duration-200;
-    @apply border-2 border-transparent hover:border-purple-500 dark:hover:border-purple-400;
+  .carousel-button {
+    @apply flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-all duration-200;
+    @apply text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300;
+    @apply border border-purple-200 dark:border-purple-800 hover:border-purple-400 dark:hover:border-purple-600;
+    @apply focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
   }
 
-  .episode-item.current {
+  .carousel-track {
+    @apply relative flex-1 overflow-hidden;
+    scroll-behavior: smooth;
+  }
+
+  .carousel-slides {
+    @apply flex gap-4 transition-all duration-300 ease-in-out;
+    width: 100%;
+  }
+
+  .carousel-slide {
+    @apply flex-shrink-0;
+    width: calc(100% - 1rem);
+  }
+
+  @screen sm {
+    .carousel-slide {
+      width: calc(50% - 1rem);
+    }
+  }
+
+  @screen lg {
+    .carousel-slide {
+      width: calc(33.333% - 1rem);
+    }
+  }
+
+  .carousel-slide.current {
     @apply border-purple-500 dark:border-purple-400 bg-purple-50 dark:bg-purple-900/20;
+  }
+
+  .slide-content {
+    @apply flex items-center gap-4 p-4;
   }
 
   .episode-number {
@@ -263,6 +321,20 @@ const relatedPodcasts = podcasts
 
   .episode-duration {
     @apply text-xs text-gray-500 dark:text-gray-400 flex-shrink-0;
+  }
+
+  .carousel-dots {
+    @apply flex justify-center gap-2 mt-4;
+  }
+
+  .carousel-dot {
+    @apply w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700;
+    @apply hover:bg-purple-400 dark:hover:bg-purple-600 transition-colors duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+  }
+
+  .carousel-dot[data-active="true"] {
+    @apply bg-purple-500 dark:bg-purple-400;
   }
 
   .like-section {
@@ -326,91 +398,6 @@ const relatedPodcasts = podcasts
     }
   }
 </style>
-
-<script>
-  // Inicializar botón de like en página individual
-  if (typeof document !== 'undefined') {
-    function initEpisodeLikeButton() {
-      const likeButton = document.querySelector('.episode-like-button');
-      if (!likeButton) return;
-
-      const podcastId = likeButton.getAttribute('data-podcast-id');
-      if (!podcastId) return;
-
-      // Verificar si ya tiene like
-      const likedPodcasts = localStorage.getItem('user_liked_podcasts');
-      if (likedPodcasts) {
-        try {
-          const liked: string[] = JSON.parse(likedPodcasts);
-          if (liked.includes(podcastId)) {
-            likeButton.classList.add('liked');
-          }
-        } catch (e) {
-          console.error('Error parsing liked podcasts:', e);
-        }
-      }
-
-      likeButton.addEventListener('click', () => {
-        handleEpisodeLike(podcastId, likeButton);
-      });
-    }
-
-    function handleEpisodeLike(podcastId: string, button: Element) {
-      if (typeof window === 'undefined') return;
-
-      const likesData = localStorage.getItem('podcast_likes');
-      let likes: { [key: string]: number } = {};
-      
-      if (likesData) {
-        try {
-          likes = JSON.parse(likesData);
-        } catch (e) {
-          console.error('Error parsing likes:', e);
-        }
-      }
-
-      const userLiked = localStorage.getItem('user_liked_podcasts');
-      let liked: string[] = [];
-      
-      if (userLiked) {
-        try {
-          liked = JSON.parse(userLiked);
-        } catch (e) {
-          liked = [];
-        }
-      }
-
-      const isLiked = liked.includes(podcastId);
-      const currentLikes = likes[podcastId] || 0;
-
-      if (isLiked) {
-        liked = liked.filter(id => id !== podcastId);
-        likes[podcastId] = Math.max(0, currentLikes - 1);
-        button.classList.remove('liked');
-      } else {
-        liked.push(podcastId);
-        likes[podcastId] = currentLikes + 1;
-        button.classList.add('liked');
-      }
-
-      localStorage.setItem('podcast_likes', JSON.stringify(likes));
-      localStorage.setItem('user_liked_podcasts', JSON.stringify(liked));
-
-      const countElement = button.querySelector('.episode-like-count');
-      if (countElement) {
-        countElement.textContent = likes[podcastId].toString();
-      }
-
-      window.dispatchEvent(new CustomEvent('podcast-liked', {
-        detail: { podcastId, likes: likes[podcastId] }
-      }));
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initEpisodeLikeButton);
-    } else {
-      initEpisodeLikeButton();
-    }
-  }
-</script>
+<script src="/js/episode-page-likes.js" is:inline></script>
+<script src="/js/episodes-carousel.js" is:inline></script>
 

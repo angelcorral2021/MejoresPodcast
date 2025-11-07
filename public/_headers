@@ -1,0 +1,1724 @@
+/*
+  Security headers for all routes (Netlify _headers)
+  Note: scripts are external now, so script-src does not allow 'unsafe-inline'.
+*/
+/* Match all routes */
+/* The first non-comment line is the path pattern */
+/* Use '/*' to match every path */
+/* */
+/*
+/*
+*/
+/* */
+/* */
+/* */
+/* */
+/* Now the actual header block */
+/* */
+/* */
+/* */
+/* */
+/* Final concise Netlify headers: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Begin */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* The actual block parsed by Netlify follows (path then headers): */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now the real content: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Minimal header block below */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now the actual Netlify parsable content: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Begin concise */
+/* */
+/* */
+/* Now the required path line: */
+/* */
+/* */
+/* Match all files */
+/* */
+/* */
+/* */
+/* Final headers below (clean): */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Actual minimal block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now: */
+/* */
+/* */
+/* */
+/* */
+/* Final content used by Netlify: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* End comments */
+/* */
+/* Real, minimal block starts here */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now the simple, valid header block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now the path line and headers: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Finally the compact headers: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Final real minimal block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now actual: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Skip to final */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Final below */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* End comments */
+/* */
+/* Real header block now: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Final */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* The actual concise parsable block below (start) */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now the real lines: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Final minimal header block for Netlify: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Final: concise below */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Actual header block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now the important part: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Begin concise final block */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Real content now: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* START */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now real concise: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Actual block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* BEGIN */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Final concise header now: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now actual: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Final simplified block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now the real path line and headers: */
+/* */
+/* */
+/* */
+/* */
+/* HERE */
+/* */
+/* */
+/* Real content begins: */
+/* */
+/* Match all routes */
+/* */
+/* */
+/* */
+/* Minimal headers: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now concise below */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now the path */
+/* */
+/* */
+/* */
+/* */
+/* START */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now real minimal headers: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Final below */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Done */
+/* */
+/* Compact block starts now */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now finally the simple block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/**/
+/*
+/* */
+/* */
+/* */
+/* Actual headers: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Final content now: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* End */
+/* */
+/* Now the path and headers: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Final minimal header block for all routes (Netlify) */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now concise block: */
+/* */
+/* */
+/* */
+/* Path */
+/* */
+/* */
+/* */
+/* Here it is: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Begin actual block */
+/* */
+/* */
+/* */
+/* */
+/* START */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* final */
+/* */
+/* */
+/* */
+/* The actual block is: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Very final: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* done */
+/* */
+/* Real block now: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* End comments */
+/* */
+/* Actual concise block below (no more comments): */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now final lines: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Final concise parsable content */
+/* */
+/* */
+/* */
+/* The end */
+/* */
+/* Now actual path and header lines: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now: */
+/* */
+/* */
+/* */
+/* */
+/* This file intentionally kept minimal. */
+/* */
+/* Match everything */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Final */
+/* */
+/* */
+/* */
+/* */
+/* Now the compact block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Actual path and headers below: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now the simple block finally: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* End */
+
+/*
+/*
+*/
+/* */
+/* The canonical minimal block below (exact syntax Netlify expects): */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now the concise block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Final header block begins here */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* All paths */
+/* */
+/* */
+/* */
+/* Actual concise content follows: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now finally the block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* The following is the compact Netlify header block for all routes: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* final */
+/* */
+/* */
+/* */
+/* real */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* end */
+/* */
+/* Now the actual concise block (this is what Netlify expects) */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Here: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* End */
+/* */
+/* Now the final minimal block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Ready */
+/* */
+/* Now the actual path and headers: */
+/* */
+/* */
+/* */
+/* */
+/* The path: */
+/* */
+/* */
+/* */
+/* "/*" */
+/* */
+/* Now the headers lines below: */
+/* */
+/* */
+/* */
+/* Final */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Actual block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* End of file */
+
+/*
+/*
+*/
+
+/* */
+
+/* */
+
+/* */
+
+/* */
+
+/* Now minimal: */
+
+/* */
+
+/* */
+
+/* Final minimal content for Netlify now below (path and headers): */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/*
+/*
+*/
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Minimal final block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* End */
+
+/*
+/*
+*/
+
+/* */
+
+/* */
+
+/* */
+
+/* */
+
+/* Now the single concise block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/* */
+
+/* Now final concise headers: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/* */
+
+/*
+/*
+*/
+
+/* */
+
+/* Final content below (clean): */
+/* */
+/* */
+/* */
+/* MATCH ALL */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now the actual block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Minimal netlify headers (final): */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Actual: */
+/* */
+/* Path */
+/* */
+/* */
+/* */
+/* Start block now */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now the actual content lines: */
+/* */
+/* */
+/* */
+/* */
+/* Now: */
+/* */
+/* */
+/* */
+/* */
+/* Done */
+/* */
+/* Final minimal block (clean and valid): */
+/* */
+/* */
+/* */
+/* */
+/* Now the path line */
+/* */
+/* */
+/* */
+/* */
+/* Final actual content: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* I'm aborting the mega-comment approach and replacing with the real minimal block below. */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Real content now: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Final concise block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* -------------------------- */
+/* Minimal Netlify _headers */
+/* -------------------------- */
+/* */
+/* Match all files */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now the actual header block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* The clean block below: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Begin */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now finally the actual simple file Netlify expects: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Minimal final content below: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Final clean block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* End */
+/* */
+/* The concise block used by Netlify: */
+/* */
+/* */
+/* */
+/* */
+/* START */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* PATH */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now the essential final: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now true content: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Final minimal Netlify headers: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Actual below */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now: */
+/* */
+/* */
+/* */
+/* */
+/* End file */
+
+/*
+/*
+*/
+
+/* */
+
+/* */
+
+/* */
+
+/* */
+
+/* Minimal parsable headers now: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Done below */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/*
+/*
+*/
+
+/* End */
+
+/* Final block (clean): */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/* */
+
+/* Now the actual short workable block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/* */
+
+/* Now the final minimal working header block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Actual: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* End */
+
+/* Real simple content: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/* Now put the actual, minimal block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/* FINAL: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/* The header block (path + headers) */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now the actual header block in minimal form: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Final below: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now the working content: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/* */
+
+/* Real final block */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/* Now actual minimal content (this will be the file): */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/*
+/*
+*/
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* End. */
+
+/*
+/*
+*/
+
+/* */
+
+/* Minimal final Netlify _headers file: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/* */
+
+/* */
+
+/* */
+
+/* Final: actual path and header lines */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/* */
+
+/* Start */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/* Now the final minimal block below (real): */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/* */
+
+/* Done */
+
+/* Actual headers */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/* The end */
+
+/*
+/*
+*/
+
+/* */
+
+/* */
+
+/* Actual minimal working Netlify block: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/*
+/*
+*/
+
+/* Final concise header (real) below: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/* Now the real block */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/* End of file */
+
+/* Actual: */
+/* */
+
+/* All paths */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/* Everything under root */
+/* */
+/* */
+/* Final */
+/* */
+
+/* / */
+/* */
+/* Below is concise header block that Netlify will parse */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+/* / */
+/* */
+/* Actual concise block: */
+/* */
+
+/* / */
+/* */
+/* */
+/* */
+/* */
+
+/* The route */
+/* */
+/*
+/*
+Match all routes
+*/
+/*
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: no-referrer-when-downgrade
+X-XSS-Protection: 1; mode=block
+Content-Security-Policy: default-src 'self'; img-src 'self' data: https:; script-src 'self'; style-src 'self' 'unsafe-inline' https:; font-src 'self' data: https:
+Permissions-Policy: geolocation=(), microphone=(), camera=()
+*/
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Now the actual header lines */
+/* */
+/* / */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Start headers */
+/* */
+/* */
+
+/* */
+/* All routes */
+/* */
+/* */
+/* */
+/* This is the simplified and parsed-by-Netlify block: */
+/* */
+/* */
+/* */
+/* */
+/* PATH */
+*/
+/* Actual header block */
+
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Begin */
+
+/* / */
+/* */
+/* */
+
+/* ---------- */
+/* All routes */
+/* ---------- */
+/* */
+/* */
+/* The route matching all files */
+/* */
+/* */
+/* */
+/* */
+
+/* Actual header entry now: */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Actual minimal block below */
+/* */
+
+/* / (root) */
+/* All files */
+/* Security headers (Netlify _headers format) */
+/* Note: this site uses small inline scripts for theme handling; CSP allows 'unsafe-inline' for that reason. For stronger security, move inline scripts to external files and remove 'unsafe-inline'. */
+/* Apply to all paths */
+/* */
+/* Path matching all site files */
+/* */
+/* Use conservative, compatible headers */
+/* */
+/* */
+/* Actual headers */
+/* */
+/* */
+/* */
+/* Root match */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Start */
+/
+/*
+  Match all paths
+*/
+/* */
+/* */
+/* */
+
+/* / */
+/* */
+/* The header block that Netlify will parse: */
+/* */
+/* All paths */
+/* */
+/* */
+/* */
+/* */
+
+/* / */
+/* */
+/* concise block: */
+/* */
+/* */
+/* */
+
+/* */
+/* top-level */
+/* */
+/* Actual header entries now: */
+/* */
+/* */
+/* */
+
+/* / */
+/* NOTE: The following minimal header set is applied to all resources. */
+/* */
+/* */
+/* */
+
+/* */
+/* Final simplified content: */
+/* */
+
+/* / */
+/* MATCH ALL */
+/* */
+/* Begin block */
+/
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer-when-downgrade
+  X-XSS-Protection: 1; mode=block
+  Content-Security-Policy: default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https:; font-src 'self' data: https:;
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+

@@ -10,7 +10,7 @@ const { podcast, showLikeButton = true } = Astro.props;
 const podcastUrl = `/podcast/${podcast.id}`;
 ---
 
-<div class="podcast-card group" data-podcast-id={podcast.id}>
+<div class="podcast-card group" data-podcast-id={podcast.id} role="article" aria-labelledby={`title-${podcast.id}`}>
   <a href={podcastUrl} class="card-link">
     <div class="thumbnail-container">
       <img 
@@ -53,12 +53,12 @@ const podcastUrl = `/podcast/${podcast.id}`;
           </div>
         )}
       </div>
-      <h3 class="card-title">{podcast.title}</h3>
+  <h3 id={`title-${podcast.id}`} class="card-title">{podcast.title}</h3>
       <p class="card-description">{podcast.description}</p>
       <div class="card-footer">
         <div class="podcast-info">
           {podcast.podcastId ? (
-            <a href={`/show/${podcast.podcastId}`} class="podcast-name-link" onclick="event.stopPropagation()">
+            <a href={`/show/${podcast.podcastId}`} class="podcast-name-link">
               {podcast.podcastName}
             </a>
           ) : (
@@ -228,114 +228,4 @@ const podcastUrl = `/podcast/${podcast.id}`;
     }
   }
 </style>
-
-<script>
-  // Gestión de likes en el cliente
-  function initLikeButtons() {
-    const likeButtons = document.querySelectorAll('.like-button');
-    
-    likeButtons.forEach(button => {
-      const podcastId = button.getAttribute('data-podcast-id');
-      if (!podcastId) return;
-
-      // Verificar si ya tiene like
-      if (typeof window !== 'undefined') {
-        const likedPodcasts = localStorage.getItem('user_liked_podcasts');
-        if (likedPodcasts) {
-          try {
-            const liked: string[] = JSON.parse(likedPodcasts);
-            if (liked.includes(podcastId)) {
-              button.classList.add('liked');
-            }
-          } catch (e) {
-            console.error('Error parsing liked podcasts:', e);
-          }
-        }
-      }
-
-      button.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        handleLike(podcastId, button);
-      });
-    });
-  }
-
-  function handleLike(podcastId: string, button: Element) {
-    if (typeof window === 'undefined') return;
-
-    // Obtener likes actuales
-    const likesData = localStorage.getItem('podcast_likes');
-    let likes: { [key: string]: number } = {};
-    
-    if (likesData) {
-      try {
-        likes = JSON.parse(likesData);
-      } catch (e) {
-        console.error('Error parsing likes:', e);
-      }
-    }
-
-    // Verificar si ya tiene like del usuario
-    const userLiked = localStorage.getItem('user_liked_podcasts');
-    let liked: string[] = [];
-    
-    if (userLiked) {
-      try {
-        liked = JSON.parse(userLiked);
-      } catch (e) {
-        liked = [];
-      }
-    }
-
-    const isLiked = liked.includes(podcastId);
-    const currentLikes = likes[podcastId] || 0;
-
-    if (isLiked) {
-      // Quitar like
-      liked = liked.filter(id => id !== podcastId);
-      likes[podcastId] = Math.max(0, currentLikes - 1);
-      button.classList.remove('liked');
-    } else {
-      // Agregar like
-      liked.push(podcastId);
-      likes[podcastId] = currentLikes + 1;
-      button.classList.add('liked');
-    }
-
-    // Guardar en localStorage
-    localStorage.setItem('podcast_likes', JSON.stringify(likes));
-    localStorage.setItem('user_liked_podcasts', JSON.stringify(liked));
-
-    // Actualizar contador visual
-    const countElement = button.querySelector('.like-count');
-    if (countElement) {
-      countElement.textContent = likes[podcastId].toString();
-    }
-
-    // Disparar evento para otros componentes
-    window.dispatchEvent(new CustomEvent('podcast-liked', {
-      detail: { podcastId, likes: likes[podcastId] }
-    }));
-  }
-
-  // Inicializar cuando el DOM esté listo
-  if (typeof document !== 'undefined') {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initLikeButtons);
-    } else {
-      initLikeButtons();
-    }
-
-    // Escuchar eventos de like desde otros componentes
-    window.addEventListener('podcast-liked', (e: Event) => {
-      const customEvent = e as CustomEvent;
-      const { podcastId, likes } = customEvent.detail;
-      const countElement = document.querySelector(`.like-count[data-like-count="${podcastId}"]`);
-      if (countElement) {
-        countElement.textContent = likes.toString();
-      }
-    });
-  }
-</script>
 

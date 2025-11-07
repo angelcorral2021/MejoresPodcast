@@ -17,17 +17,29 @@ import BestSection from '../components/sections/BestSection.astro';
   </div>
 
   <div class="container">
-    <!-- Sección: Mejores Podcasts de Humor -->
-    <HumorSection limit={6} />
+    <!-- Sección: Últimos Capítulos (primero, para usuarios que buscan novedades) -->
+    <section aria-labelledby="latest-heading">
+      <h2 id="latest-heading" class="sr-only">Últimos capítulos</h2>
+      <LatestSection limit={6} />
+    </section>
 
-    <!-- Sección: Últimos Capítulos -->
-    <LatestSection limit={6} />
+    <!-- Sección: Mejores Capítulos o Episodios (destacados) -->
+    <section aria-labelledby="best-heading">
+      <h2 id="best-heading" class="sr-only">Mejores capítulos</h2>
+      <BestSection limit={6} />
+    </section>
+
+    <!-- Sección: Mejores Podcasts de Humor -->
+    <section aria-labelledby="humor-heading">
+      <h2 id="humor-heading" class="sr-only">Humor</h2>
+      <HumorSection limit={6} />
+    </section>
 
     <!-- Sección: De Culto -->
-    <CultSection />
-
-    <!-- Sección: Mejores Capítulos o Episodios -->
-    <BestSection limit={6} />
+    <section aria-labelledby="cult-heading">
+      <h2 id="cult-heading" class="sr-only">De Culto</h2>
+      <CultSection />
+    </section>
   </div>
 </Layout>
 
@@ -53,35 +65,3 @@ import BestSection from '../components/sections/BestSection.astro';
   }
 </style>
 
-<script>
-  // Optimización: Intersection Observer para lazy loading de imágenes
-  if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target as HTMLImageElement;
-          if (img.dataset.src) {
-            img.src = img.dataset.src;
-            img.removeAttribute('data-src');
-            observer.unobserve(img);
-          }
-        }
-      });
-    }, {
-      rootMargin: '50px'
-    });
-
-    // Observar todas las imágenes con data-src después de que el DOM esté listo
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('img[data-src]').forEach(img => {
-          imageObserver.observe(img);
-        });
-      });
-    } else {
-      document.querySelectorAll('img[data-src]').forEach(img => {
-        imageObserver.observe(img);
-      });
-    }
-  }
-</script>

@@ -11,7 +11,7 @@ const youtubeUrl = `https://www.youtube.com/watch?v=${podcast.youtubeId}`;
 const embedUrl = `https://www.youtube.com/embed/${podcast.youtubeId}`;
 ---
 
-<div class="video-card group">
+<div class="video-card group" role="article" aria-labelledby={`title-${podcast.id}`}>
   <a href={`/podcast/${podcast.id}`} class="block">
     <div class="thumbnail-container">
       <img 
@@ -33,7 +33,7 @@ const embedUrl = `https://www.youtube.com/embed/${podcast.youtubeId}`;
     </div>
     <div class="card-content">
       <div class="category-tag">{podcast.category}</div>
-      <h3 class="card-title">{podcast.title}</h3>
+  <h3 id={`title-${podcast.id}`} class="card-title">{podcast.title}</h3>
       <p class="card-description">{podcast.description}</p>
       <div class="card-meta">
         <span class="podcast-name">{podcast.podcastName}</span>
