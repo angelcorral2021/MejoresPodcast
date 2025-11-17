@@ -10,7 +10,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.15.3"
+    "@libsql/client": "^0.15.15",
+    "astro": "^5.15.8"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^6.0.2",
